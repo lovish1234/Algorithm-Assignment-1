@@ -1,3 +1,4 @@
+#Class Node having the essential functions 
 class Node :
 	def _init_(self,data):
 		self.data=data
@@ -19,6 +20,7 @@ class Node :
 		if self.right :
 			rheight=self.right.height()
 		return 1 + max(lheight,rheight)
+#See wikipedia for "Tree Rotation" for better understanding of the below rotate_ functions	
 	def rotate_left(self):
 		temp=self.data
 		self.data = self.right.data
@@ -52,7 +54,9 @@ class Node :
 			else:
 				self.rotate_right_left()
 
-#def insert(self,data):
+#Essential operations in an avl tree ie Insert,Delete and Search
+
+				
 
 
 
