@@ -56,7 +56,28 @@ class Node :
 
 #Essential operations in an avl tree ie Insert,Delete and Search
 
+	def Insert(self,data):
+		if data <= self.data:
+			if not self.left:
+				self.left =  Node(data)
+			else:
+				self.left.Insert(data)
+		else:
+			if not self.right :
+				self.right = Node(data)
+			else:
+				self.right.Insert(data)
+		self.balance()
+  
+	def inorder(self):
+		inorder(self.left)
+		print self.data
+		inorder(self.right) 		
+
+
 				
+			
+
 
 
 
