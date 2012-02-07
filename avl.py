@@ -1,17 +1,19 @@
 #Class Node having the essential functions 
 class Node :
-	def _init_(self,data):
+	def __init__(self,data):
 		self.data=data
-		self.child(self,None,None)
+		self.child(None,None)
 	def child(self,leftchild,rightchild):
 		self.left=leftchild
 		self.right=rightchild
 	def bfactor(self):
+		l=0
 		if self.left:
-			lheight=self.left.height()
+			l=self.left.height()
+		r=0
 		if self.right:
-			rheight=self.right.height()	
-		return (lheight - rheight)
+			r=self.right.height()	
+		return (l - r)
 	def height(self):
 		lheight=0
 		if self.left :
@@ -41,6 +43,7 @@ class Node :
 	def rotate_right_left(self):
  		self.right.rotate_right()
 		self.rotate_left()	
+# Balancing the tree using above set of rotations		 
 	def balance(self):
 		value=self.bfactor()
 		if value >= 2:
@@ -67,12 +70,25 @@ class Node :
 				self.right = Node(data)
 			else:
 				self.right.Insert(data)
-		self.balance()
+#		self.balance()
   
 	def inorder(self):
-		inorder(self.left)
-		print self.data
-		inorder(self.right) 		
+		print  str(self.data)
+		if self.left:
+			self.left.inorder()
+#		print " "  * indent + str(self.data)
+		if self.right:
+			self.right.inorder()	
+
+if __name__ == "__main__" :
+#	print "hello"
+	tree = Node(5)	
+	tree.Insert(7)
+	tree.Insert(1)
+	tree.Insert(2)
+	tree.Insert(4)
+	tree.inorder()
+		
 
 
 				
