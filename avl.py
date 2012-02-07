@@ -94,13 +94,27 @@ class Node :
 			self.right.inorder()	
 
 
-#def Delete(self,datum):
-#		if self.data==datum:
-#Remove this node
-#		elif self.data<=datum:
-#			self.left.Delete(datum)
-#		elif self.data>datum:
-#			self.right.Delete(datum)
+	def Delete(self,data):
+		if self.data==data:
+			if self.left==None and self.right==None:
+				 self==None
+			elif self.left==None or self.right==None:
+				if self.left==None:
+					self.data=self.right.data
+					self.right=None
+				else:
+					self.data=self.right.data
+					self.left=None
+		elif self.data<=data:
+			if self.left :
+				self.left.Delete(data)
+			else:
+				print "No such value exists in tree"
+		elif self.data>data:
+		  	if self.right:
+				self.right.Delete(data)
+			else :
+				print "No such value exists in tree"	
 			
 			
 				
@@ -120,7 +134,8 @@ if __name__ == "__main__" :
 	tree.Search(41)
 	tree.Search(40)
 	tree.inorder()
-		
+	tree.Delete(58)
+	tree.inorder()	
 
 
 				
