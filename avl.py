@@ -141,7 +141,10 @@ class Node :
 	  				self.data=self.left.data
 					self.left = None
 			else:
-		  		print self.Inordersuccessor()
+					temp=self.Inordersuccessor().data
+					self.Inordersuccessor().data=self.data
+					self.data=temp
+					self.Inordersuccessor().Delete(self.Inordersuccessor().data)
 		elif self.data > data:
 #		    print "Going Left"
 	   		self.left.Delete(data)
@@ -150,7 +153,7 @@ class Node :
   			self.right.Delete(data)
   		else:
 			print "The given data set is wrong"		
-
+		self.balance()
 			
 			
 				
@@ -172,7 +175,7 @@ if __name__ == "__main__" :
 #	tree.inorder()
 #	tree.Delete(33)
 #	tree.Delete(34)
-	tree.Delete(30)
+	tree.Delete(34)
 	tree.inorder()
 	
 
