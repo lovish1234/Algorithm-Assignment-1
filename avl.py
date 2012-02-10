@@ -108,7 +108,15 @@ class Node :
 		print  str(self.data)
 		if self.right:
 			self.right.inorder()	
-
+	
+	def Inordersuccessor(self):
+		node=self.right
+		if node.left == None:
+			return node
+		else:
+			while not node.left==None:
+				node=node.left
+			return node	
 
 	def Delete(self,data):
 # 3 cases may arise in the deletion of an item
@@ -120,7 +128,6 @@ class Node :
 #			print "Reached"
 #			print self.data
 			if self.left==None and self.right==None:
-				
 				if(self.parent.left==self):
 #					print "Reached-1"
 					self.parent.left = None
@@ -134,8 +141,7 @@ class Node :
 	  				self.data=self.left.data
 					self.left = None
 			else:
-#Needs to be written in this case
-		  		print "Hello"
+		  		print self.Inordersuccessor()
 		elif self.data > data:
 #		    print "Going Left"
 	   		self.left.Delete(data)
@@ -143,7 +149,7 @@ class Node :
 #		  	print "Going Right"
   			self.right.Delete(data)
   		else:
-			"Fuck Sonkar"			
+			print "The given data set is wrong"		
 
 			
 			
@@ -164,8 +170,9 @@ if __name__ == "__main__" :
 #	tree.Search(41)
 #	tree.Search(40)
 #	tree.inorder()
-	tree.Delete(33)
-	tree.Delete(34)
+#	tree.Delete(33)
+#	tree.Delete(34)
+	tree.Delete(30)
 	tree.inorder()
 	
 
