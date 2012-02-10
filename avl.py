@@ -7,10 +7,15 @@ class Node :
 	
 	def __init__(self,data):
 		self.data=data
+		self.parent=None
 		self.child(None,None)
 	def child(self,leftchild,rightchild):
 		self.left=leftchild
 		self.right=rightchild
+		if not self.left == None:
+			self.left.parent=self
+		if not self.right == None:
+			self.right.parent=self
 	def bfactor(self):
 		lheight=0
 		if self.left:
@@ -110,29 +115,36 @@ class Node :
 # 1) If may be a leaf node .If so,straightway delete it
 # 2) If it has a single child (left or right) make Node point to its child and delete the child
 # 3) If it has both the children present.Find its inorder successor.Swap items from the successor
-# from the node and delete the successor. 	
+# from the node and delete the successor.
 		if self.data==data:
-			print "I got it"
+#			print "Reached"
+#			print self.data
 			if self.left==None and self.right==None:
-				 self==None
-			elif self.left==None or self.right==None:
-				if self.left==None:
-					self=self.right
-					self.right=None
+				
+				if(self.parent.left==self):
+#					print "Reached-1"
+					self.parent.left = None
 				else:
-					self=self.right
-					self.left=None
-		elif self.data < data:
-			if self.left :
-				self.left.Delete(data)
+	 				self.parent.right = None
+   			elif self.left==None or self.right==None:
+				if self.left==None:
+					self.data=self.right.data
+	   				self.right =None
+				else:
+	  				self.data=self.left.data
+					self.left = None
 			else:
-				print "No such value exists in tree"
-		elif self.data  > data:
-		  	if self.right:
-				print "Going Inside"
-				self.right.Delete(data)
-			else :
-				print "No such value exists in tree"	
+#Needs to be written in this case
+		  		print "Hello"
+		elif self.data > data:
+#		    print "Going Left"
+	   		self.left.Delete(data)
+ 		elif self.data < data:
+#		  	print "Going Right"
+  			self.right.Delete(data)
+  		else:
+			"Fuck Sonkar"			
+
 			
 			
 				
@@ -153,6 +165,7 @@ if __name__ == "__main__" :
 #	tree.Search(40)
 #	tree.inorder()
 	tree.Delete(33)
+	tree.Delete(34)
 	tree.inorder()
 	
 
