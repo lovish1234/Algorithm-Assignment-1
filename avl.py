@@ -154,8 +154,10 @@ class Node :
   		else:
 			print "The given data set is wrong"		
 		self.balance()
-			
-			
+
+#Takes pointer to two tree roots and merges them in order  log(h1 + h2)
+
+		
 				
 if __name__ == "__main__" :	
 	tree = Node(14)
