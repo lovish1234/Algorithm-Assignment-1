@@ -3,7 +3,8 @@ class ExNode :
 		self.data=data
 		self.external=1
 		self.parent(None)
-		self.height=0
+	def	height(self):
+		return 0
 	def parent(self,parent):
 		self.parent=parent
 	
@@ -15,8 +16,8 @@ class InNode :
 		self.parent=None
 		self.head=None
 		self.tail=None
-		cleft.parent=self
-		cright.parent=self
+		left.parent=self
+		right.parent=self
 	def height(self):
 		lheight=0
 		if self.left :
@@ -27,7 +28,7 @@ class InNode :
 		return 1 + max(lheight,rheight)
 	def bfactor(self):
 		lheight=0
-		if self.left:
+		if self.left :
 			lheight=self.left.height()
 		rheight=0
 		if self.right:
@@ -78,9 +79,9 @@ class InNode :
 		
 if __name__ == "__main__" :	
 	one=ExNode(1)
-	print one.parent
 	two=ExNode(2)
-	print two.parent
-	three=InNode(one,two)
-	
+	onei=InNode(one,two)
+	three=ExNode(3)
+	twoi=InNode(onei,three)
+	twoi.balance()
 
