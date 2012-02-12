@@ -67,12 +67,12 @@ class InNode :
 	def balance(self):	
 		value=self.bfactor()
 		if value >= 2:
-			if self.left.balance() >0:
+			if self.left.bfactor() > 0:
 				self.rotate_right()
 			else:
 				self.rotate_left_right()
 		elif value<=(-2):
-			if self.right.balance() < 0:
+			if self.right.bfactor() < 0:
 				self.rotate_left()
 			else:
 				self.rotate_right_left()
@@ -84,4 +84,7 @@ if __name__ == "__main__" :
 	three=ExNode(3)
 	twoi=InNode(onei,three)
 	twoi.balance()
+	four=ExNode(4)
+	threei=InNode(twoi,four)
+	threei.balance()
 
