@@ -76,8 +76,36 @@ class InNode :
 				self.rotate_left()
 			else:
 				self.rotate_right_left()
+
+def Merge (tree1,tree2):
+	if( (tree1.height()-tree2.height()) < (2) and (tree1.height()-tree2.height()) > (-2)):
+		dummy=InNode(tree2,tree1)
+		tree2.parent=dummy
+		tree1.parent=dummy
+	elif( (tree1.height() - tree2.height()) <= (-2) ):
+		it=tree2
+		while not (it.height() == tree1.height() +1 or it.height() == tree1.height() ):
+			it=it.right	
+		itparent=it.parent	
+		dummy=InNode(it,tree1)
+		it.parent=dummy
+		itparent.right=dummy		 
+		dummy.parent=itparent
+## Not balancing here ?
+	else:
+ 		it = tree1	  
+		while not (it.height() == tree2.height() +1 or it.height() == tree2.height() ):
+			it=it.left
+		itparent=it.parent	
+		dummy=InNode(tree2,it)
+		it.parent=dummy
+		itparent.left=dummy
+		dummy.parent=itparent
+## Not balanced ?
 		
 if __name__ == "__main__" :	
+#Two test trees and checking if they are getting merged 
+#first tree.Rotation working correctly
 	one=ExNode(1)
 	two=ExNode(2)
 	onei=InNode(one,two)
@@ -87,4 +115,18 @@ if __name__ == "__main__" :
 	four=ExNode(4)
 	threei=InNode(twoi,four)
 	threei.balance()
+#second tree.
+	one1=ExNode(5)
+	two1=ExNode(6)
+	onei1=InNode(one1,two1)
+	three1=ExNode(7)
+	twoi1=InNode(onei1,three1)
+	twoi1.balance()
+	four1=ExNode(8)
+	threei1=InNode(twoi1,four1)
+	threei1.balance()
+	Merge(threei,threei1)
+#third tree.
+	one2=ExNode(9)
+	Merge(one2,threei1)
 
