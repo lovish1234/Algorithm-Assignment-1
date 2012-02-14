@@ -39,6 +39,14 @@ def Rotate_Left(Node):
         Node2.head=Node4.head
     else:
         Node2.head=Node4
+    Node2.size=Node4.size+Node2.right.size+1
+    Node3.size=Node3.left.size+Node2.size+1
+    Node2.height=max(Node2.left.height+1,Node2.right.height+1)
+    Node3.height=max(Node3.left.height+1,Node3.right.height+1)
+    while Node1.parent != None:
+        Node1.height=max(Node1.left.height+1,Node1.right.height+1)
+        Node1=Node1.parent
+    Node1.height=max(Node1.left.height+1,Node1.right.height+1)
 def Rotate_Left_Right(Node):
     print "Rotate Left Right"
     Node5=Node
@@ -65,7 +73,9 @@ def Rotate_Left_Right(Node):
     if A.external!=1:
         Node4.head=A.head
     else:
-        Node4.head=A  
+        Node4.head=A
+    Node3.size=A.size+B.size+1
+    Node4.size=Node3.size+C.size+1
     Node3.height=max(Node3.left.height+1,Node3.right.height+1)
     Node4.height=max(Node4.right.height+1,Node4.left.height+1)
     Rotate_Left(Node)
@@ -97,6 +107,8 @@ def Rotate_Right_Left(Node):
         Node5.head=C.head
     else:
         Node5.head=C  
+    Node5.size=C.size+D.size+1
+    Node4.size=Node5.size+B.size+1
     Node5.height=max(Node5.left.height+1,Node5.right.height+1)
     Node4.height=max(Node4.right.height+1,Node4.left.height+1)
     Rotate_Right(Node)
@@ -119,6 +131,15 @@ def Rotate_Right(Node):
         Node2.tail=Node4.tail
     else:
         Node2.tail=Node4
+    Node2.size=Node2.left.size+Node4.size+1
+    Node3.size=Node2.size+Node3.right.size+1
+    Node2.height=max(Node2.left.height+1,Node2.right.height+1)
+    Node3.height=max(Node3.left.height+1,Node3.right.height+1)
+    while Node1.parent != None:
+        Node1.height=max(Node1.left.height+1,Node1.right.height+1)
+        Node1=Node1.parent
+    Node1.height=max(Node1.left.height+1,Node1.right.height+1)
+    
 ##def rotate_left(node):
 ##    pivot=node.right
 ##    root=node
@@ -456,5 +477,5 @@ if __name__ == "__main__" :
      #Link(5,6,30)
      #Link(2,6,100)
      x=Find_Root(3)
-     print x.bfactor()
+     print x.size
      
