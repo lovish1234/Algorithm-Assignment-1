@@ -141,37 +141,7 @@ def Rotate_Right(Node):
         Node1.height=max(Node1.left.height+1,Node1.right.height+1)
         Node1=Node1.parent
     Node1.height=max(Node1.left.height+1,Node1.right.height+1)
-    
-##def rotate_left(node):
-##    pivot=node.right
-##    root=node
-##
-##    node.right=node.right.left
-##    pivot.node.parent=root
-##
-##    pivot.node=node
-##    nparent=root.parent
-##    root.parent=pivot
-##
-##    pivot.parent=nparent
-##def Rotate_Right(self):
-##    pivot=self.left
-##    root=self
-##
-##    self.left=self.left.right
-##    pivot.right.parent=root
-##
-##    pivot.right=self
-##    nparent=root.parent
-##    root.parent=pivot
-##
-##    pivot.parent=nparent
-##def rotate_left_right(self):
-##  rotate_right(self.left)
-##  rotate_left(self)
-##def rotate_right_left(self):
-##  rotate_left(self.right)
-##  rotate_right(self)
+   
 def balance(self):
     value=self.bfactor()
     if value >= 2:
@@ -362,6 +332,7 @@ def Link(u,v,w):
                      a.tail=newNode.tail
                      a.height=1+max(a.left.height,a.right.height)
                      a.size=1+a.size
+				 	 x=Node2.parent
                      while x.bfactor()!=-2:
                          x=x.parent
                      if x.right.bfactor()==1:
@@ -488,17 +459,14 @@ def print_tree(node):
 		if not node.right==None and node.right.external==0:
 			print_tree(node.right)		
 
-if __name__ == "__main__" :
-     Tree={0:ExNode(0),1:ExNode(1) , 2:ExNode(2), 3:ExNode(3) , 4:ExNode(4),5:ExNode(5),6:ExNode(6)}
-     Link(1,2,12)
-     Link(2,3,15)
-     Link(4,5,100)
-     Link(3,5,50)
-     Link(0,1,69)		
-     #Link(3,4,20)
-     #Link(5,6,30)
-     #Link(2,6,100)
-     x=Find_Root(3)
-     print x.size
+
+Tree={0:ExNode(0),1:ExNode(1) , 2:ExNode(2), 3:ExNode(3) , 4:ExNode(4),5:ExNode(5),6:ExNode(6)}
+Link(1,2,6)
+Link(2,3,3)
+Link(3,4,4)
+Link(4,5,2)		
+x=Find_Root(3)
+print x.head.data
+print x.tail.data
 print_tree(Find_Root(3))	 
 	 		
