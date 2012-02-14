@@ -5,6 +5,8 @@ class ExNode :
         self.external=1
         self.height=1
         self.parent=None
+	self.left=None
+	self.right=None	  
 
 class InNode :
     def __init__(self,data):
@@ -164,12 +166,12 @@ def Rotate_Right(Node):
 ##    root.parent=pivot
 ##
 ##    pivot.parent=nparent
-def rotate_left_right(self):
-    rotate_right(self.left)
-    rotate_left(self)
-def rotate_right_left(self):
-    rotate_left(self.right)
-    rotate_right(self)
+##def rotate_left_right(self):
+##  rotate_right(self.left)
+##  rotate_left(self)
+##def rotate_right_left(self):
+##  rotate_left(self.right)
+##  rotate_right(self)
 def balance(self):
     value=self.bfactor()
     if value >= 2:
@@ -466,16 +468,37 @@ def Find_Root(u):
     while Node1.parent !=None:
         Node1=Node1.parent
     return Node1
+
+def print_tree(node):
+##InOrder traversal on InNodes and for each InNode we find the rightmost ExNode of its left
+##subtree and leftmost ExNode of its right subtree.
+	if node==None:
+		return
+	else:
+		if not node.left==None and node.left.external==0 :
+			print_tree(node.left)
+##Now get the rightmost element of left subtree and leftmost element of right subtree
+		itrl=node.left
+		while not itrl.right==None:
+			itrl=itrl.right
+		itrr=node.right
+		while not itrr.left==None:
+			itrr=itrr.left
+		print itrl.data, node.edge,itrr.data
+		if not node.right==None and node.right.external==0:
+			print_tree(node.right)		
+
 if __name__ == "__main__" :
      Tree={0:ExNode(0),1:ExNode(1) , 2:ExNode(2), 3:ExNode(3) , 4:ExNode(4),5:ExNode(5),6:ExNode(6)}
      Link(1,2,12)
      Link(2,3,15)
      Link(4,5,100)
      Link(3,5,50)
-     Link(0,1,69)
+     Link(0,1,69)		
      #Link(3,4,20)
      #Link(5,6,30)
      #Link(2,6,100)
      x=Find_Root(3)
      print x.size
-     
+print_tree(Find_Root(3))	 
+	 		
