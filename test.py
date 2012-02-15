@@ -50,6 +50,20 @@ def Cut(u,v):
         #print "Their is no Edge between ",u, " and ",v
 	return 0
 
+#Implementation of Multi_Add to check if ineed multi_add would work in test
+#cases
+def Is_Reachable(u,v):
+    Node1=Tree[u]
+    Node2=Tree[v]
+    while Node1!=Node2 and Node1 !=None :
+        Node1=Node1.right
+    if Node1 != None:
+      #  print v ," is Reachable from ",u
+        return 1
+    else:
+       # print v ," is Not Reachable from ",u
+        return 0
+
 if __name__ == "__main__" :
 # Initialise the Tree dictionary to a particular range(default:1000)
     Tree = {}	
@@ -58,8 +72,8 @@ if __name__ == "__main__" :
 
 
 #Dict={1:'Link',2:'Cut',3:'Multi_Add_Element',4:'Reverse_Path',5:'Report_Min',6:'Is_Reachable'}
-Dict={1:'Link',2:'Cut',3:'Is_Reachable'}
-List=[1,2,3]
+#Dict={1:'Link',2:'Cut',3:'Is_Reachable'}
+List=[1,2,3,4]
 f=open('testcases.txt','w')
 for i in range (1000):
     s=random.randint(1,10)
@@ -74,6 +88,10 @@ for i in range (1000):
     elif w==3:
         f.write ('Is_Reachable'+'('+str(s)+','+str(t)+')')
         f.write('\n')
+    elif w==4:
+        if (Is_Reachable(s,t)==1):
+            f.write('Multi_Add'+'('+str(s)+','+str(t)+','+str(u)+')')
+            f.write('\n')    
     else:
             if(Link(s,t,u)==1):    
                 f.write('Link'+'('+str(s)+','+str(t)+','+str(u)+')')
