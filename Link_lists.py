@@ -1,3 +1,4 @@
+import sys
 class Node:
     def __init__(self,data):
         self.data=data
@@ -43,6 +44,7 @@ def Cut(u,v):
 
     else:
         print "Their is no Edge between ",u, " and ",v
+
 def Multi_Add(u,v,w):
     Node1=Tree[u]
     Node2=Tree[v]
@@ -101,30 +103,38 @@ def Traverse(index):
         tree=tree.left
     node=tree
     if node.right ==None:
-        print node.data
+        g.write(str(node.data))
     else:
+        count=0
         while node.right != None :
-            print node.data ,"(",node.out_edge,")",node.right.data
+            if count==0:
+                count=1    
+                g.write(str(node.data)+'---'+str(node.out_edge)+'---->>>>>'+str(node.right.data))
+            else:
+                g.write('---'+str(node.out_edge)+'---->>>>>'+str(node.right.data))
             node=node.right
+
+	
 if __name__ == "__main__" :
+     f=open(sys.argv[1],'r')
+     g=open(sys.argv[2],'w')
+     cases=f.readlines()
+     for x in cases:
+        splitcases=x.split()
+        if(splitcases[0]=='L') :  
+            Link(int(splitcases[1]),int(splitcases[2]),int(splitcases[3]))
+        elif(splitcases[0]=='C') :
+            Cut(int(splitcases[1]),int(splitcases[2]))
+        elif(splitcases[0]=='I'):
+            Is_Reachable(int(splitcases[1]),int(splitcases[2]))
+        else:
+            Tree={}
+            total=int(splitcases[0])    
+            for i in range(int(splitcases[0])+1):                                                     
+                 Tree[i]=Node(i)
+     Traverse(1)  
  
-    Tree={1:Node(1) , 2:Node(2), 3:Node(3) , 4:Node(4)}
-    Cut(2,3)
-    Link(1,2,10)
-    Reverse(1)
-    Link(3,4,12)
-    Link(1,3,15)
-    b=Report_Minimum(1,4)
-    print b
-    #Traverse(1)
-    #Traverse(2)
-    #print Tree[1].size
-    Traverse(4)
-    a=Is_Reachable(4,3)
-    #Cut(1,2)
-    #Traverse(1)
-    #Traverse(3)
-    #print Tree[1].size
-    #Multi_Add(2,3,10)
-    Reverse(4)
-    Traverse(4)
+     f.close()    
+     g.close()
+
+
