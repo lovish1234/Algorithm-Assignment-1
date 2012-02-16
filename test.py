@@ -55,6 +55,8 @@ def Cut(u,v):
 def Is_Reachable(u,v):
     Node1=Tree[u]
     Node2=Tree[v]
+    if Node1==Node2:
+        return 0
     while Node1!=Node2 and Node1 !=None :
         Node1=Node1.right
     if Node1 != None:
@@ -69,31 +71,36 @@ if __name__ == "__main__" :
     Tree = {}	
     for i in range(1000):
 	Tree[i]= Node(i)
-
-
-#Dict={1:'Link',2:'Cut',3:'Multi_Add_Element',4:'Reverse_Path',5:'Report_Min',6:'Is_Reachable'}
-#Dict={1:'Link',2:'Cut',3:'Is_Reachable'}
-List=[1,2,3,4]
+List=[1,2,3]
 f=open('testcases.txt','w')
+x=random.randint(1,1000)
 for i in range (1000):
-    s=random.randint(1,10)
-    t=random.randint(1,10)
+    if i==0:
+        f.write(str(x))
+        f.write('\n')
+        continue    
+    s=random.randint(1,x)
+    t=random.randint(1,x)
     u=random.randint(1,1000)
     v=random.sample(List,1)
     w=v.pop(0)
     if w==2:
         if (Cut(s,t)==1):
-    	    f.write('Cut'+'('+str(s)+','+str(t)+')')
+    	    f.write('C'+' '+str(s)+' '+str(t))
             f.write('\n')
     elif w==3:
-        f.write ('Is_Reachable'+'('+str(s)+','+str(t)+')')
+        f.write ('I'+' '+str(s)+' '+str(t))
         f.write('\n')
     elif w==4:
         if (Is_Reachable(s,t)==1):
-            f.write('Multi_Add'+'('+str(s)+','+str(t)+','+str(u)+')')
+            f.write('A'+' '+str(s)+' '+str(t)+' '+str(u))
+            f.write('\n')   
+    elif w==5:
+        if (Is_Reachable(s,t)==1):
+            f.write('M'+' '+str(s)+' '+str(t))
             f.write('\n')    
     else:
-            if(Link(s,t,u)==1):    
-                f.write('Link'+'('+str(s)+','+str(t)+','+str(u)+')')
-                f.write('\n')
+        if(Link(s,t,u)==1):    
+            f.write('L'+' '+str(s)+' '+str(t)+' '+str(u))
+            f.write('\n')
 f.close()
