@@ -1,3 +1,4 @@
+import sys
 class ExNode :
     def __init__(self,data):
         self.data=data
@@ -635,14 +636,16 @@ def Is_Reachable(u,v):
     else:
         print v ," is  NOT Reachable from  ", u
         return -1
-   
+count=0   
 def print_tree(node):
     ##InOrder traversal on InNodes and for each InNode we find the rightmost ExNode of its left
     ##subtree and leftmost ExNode of its right subtree.
-
+    global count
     #When the node is only vertex in the path:
     if node==None:
         return
+    elif(node.external==1):
+        print node.data    
     #when # of vertices in path are greater than 1
     else:
         if not node.left==None and node.left.external==0 :
@@ -654,19 +657,15 @@ def print_tree(node):
         itrr=node.right
         while itrr.left!=None :
             itrr=itrr.left
-        print itrl.data, node.edge,itrr.data
+        if  count==0:
+            g.write( str(str(itrl.data) + '---'+ str(node.edge)+'--->>>>>'+str(itrr.data)))
+            count=1
+        else:
+            g.write(  str( '---'+ str(node.edge)+'--->>>>>'+str(itrr.data)))
         if not node.right==None and node.right.external==0:
             print_tree(node.right)
             
 def Multi_Add(u,v,D):
-##    Node1=Tree[u]
-##    Node2=Tree[v]
-##    while Node1.parent!=None:
-##        Node1=Node1.parent
-##    while Node2.parent!=None:
-##        Node2=Node2.parent
-##    if Node1!=Node2:
-##        print u," and ",v,"are NOT connected"
      x=Is_Reachable(u,v)
      if x !=1:
        return
@@ -680,8 +679,12 @@ def Multi_Add(u,v,D):
                  Node2.parent.multi_add=-D
             Node2=Node2.parent
              
+
+
 if __name__ == "__main__" :
-     f=open('testcases.txt','r')
+     count=0   
+     f=open(sys.argv[1],'r')
+     g=open(sys.argv[2],'w')
      cases=f.readlines()
      for x in cases:
         splitcases=x.split()
@@ -690,9 +693,12 @@ if __name__ == "__main__" :
         elif(splitcases[0]=='C') :
             Cut(int(splitcases[1]),int(splitcases[2]))
         elif(splitcases[0]=='I'):
-            Is_Reachable((int(splitcases[1]),int(splitcases[2]))
+            Is_Reachable(int(splitcases[1]),int(splitcases[2]))
         else:
             Tree={}
-            for i in range(int(splitcases[0])):                                                     
+            total=int(splitcases[0])    
+            for i in range(int(splitcases[0])+1):                                                     
                  Tree[i]=ExNode(i)
- 
+     print_tree(Find_Root(1))   
+     f.close()    
+     g.close()
