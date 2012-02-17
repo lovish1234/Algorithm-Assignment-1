@@ -1,4 +1,5 @@
 import random
+#import sys
 
 #Defining a Node
 class Node:
@@ -71,36 +72,36 @@ if __name__ == "__main__" :
     Tree = {}	
     for i in range(1000):
 	Tree[i]= Node(i)
-List=[1,2,3]
-f=open('testcases.txt','w')
-x=random.randint(1,1000)
-for i in range (1000):
-    if i==0:
-        f.write(str(x))
-        f.write('\n')
-        continue    
-    s=random.randint(1,x-1)
-    t=random.randint(1,x-1)
-    u=random.randint(1,1000)
-    v=random.sample(List,1)
-    w=v.pop(0)
-    if w==2:
-        if (Cut(s,t)==1):
-    	    f.write('C'+' '+str(s)+' '+str(t))
+    List=[1]
+    f=open('testcases.txt','w')
+    x=random.randint(1,1000)
+    for i in range (1000):
+        if i==0:
+            f.write(str(x))
             f.write('\n')
-    elif w==3:
-        f.write ('I'+' '+str(s)+' '+str(t))
-        f.write('\n')
-    elif w==4:
-        if (Is_Reachable(s,t)==1):
-            f.write('A'+' '+str(s)+' '+str(t)+' '+str(u))
-            f.write('\n')   
-    elif w==5:
-        if (Is_Reachable(s,t)==1):
-            f.write('M'+' '+str(s)+' '+str(t))
-            f.write('\n')    
-    else:
-        if(Link(s,t,u)==1):    
-            f.write('L'+' '+str(s)+' '+str(t)+' '+str(u))
+            continue    
+        s=random.randint(1,x-1)
+        t=random.randint(1,x-1)
+        u=random.randint(1,1000)
+        v=random.sample(List,1)
+        w=v.pop(0)
+        if w==2:
+            if (Cut(s,t)==1):
+    	        f.write('C'+' '+str(s)+' '+str(t))
+                f.write('\n')
+        elif w==3:
+            f.write ('I'+' '+str(s)+' '+str(t))
             f.write('\n')
-f.close()
+        elif w==4:
+            if (Is_Reachable(s,t)==1):
+                f.write('A'+' '+str(s)+' '+str(t)+' '+str(u))
+                f.write('\n')   
+        elif w==5:
+            if (Is_Reachable(s,t)==1):
+                f.write('M'+' '+str(s)+' '+str(t))
+                f.write('\n')    
+        else:
+            if(Link(s,t,u)==1):    
+                f.write('L'+' '+str(s)+' '+str(t)+' '+str(u))
+                f.write('\n')
+    f.close()

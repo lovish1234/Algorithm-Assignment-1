@@ -1,4 +1,5 @@
 import sys
+import tl
 class Node:
     def __init__(self,data):
         self.data=data
@@ -111,7 +112,7 @@ def Traverse(index):
                 count=1    
                 g.write(str(node.data)+'---'+str(node.out_edge)+'---->>>>>'+str(node.right.data))
             else:
-                g.write('---'+str(node.out_edge)+'---->>>>>'+str(node.right.data))
+                g.write('---'+str(node.out_edge)+'--->>>>>'+str(node.right.data))
             node=node.right
 
 	
