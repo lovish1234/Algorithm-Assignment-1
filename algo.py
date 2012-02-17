@@ -244,6 +244,11 @@ def Rotate_Right(Node):
             Parent.tail=Parent.right.tail
         Parent=Parent.parent
 
+
+#############################################################
+#Link
+#############################################################
+
 def Link(u,v,w):
     Node1=Tree[u]
     Node2=Tree[v]
@@ -481,12 +486,40 @@ def Link(u,v,w):
                     Rotate_Left(newNode)
 #	    print_tree(Find_Root(u))
 
-
-def Find_Root(u):
+####################################################################
+#Is_Reachable
+####################################################################
+def Is_Reachable(u,v):
+    a=b=0
     Node1=Tree[u]
-    while Node1.parent !=None:
-        Node1=Node1.parent    
-    return Node1
+    Node2=Tree[v]
+    while Node1.parent != None:
+        Node1=Node1.parent
+    while Node2.parent != None:
+        Node2=Node2.parent
+    if Node1!=Node2:
+        h.write("0\n")
+        return
+    while Node1.parent!=None:
+        if Node1.parent.left==Node1:
+             a=a+Node1.parent.right.size+1
+        Node1=Node1.parent
+    while Node2.parent!=None:
+        if Node2.parent.left==Node2:
+             b=b+Node2.parent.right.size+1
+        Node2=Node2.parent
+    if a >= b:
+         h.write("1\n")
+         return 1
+    else:
+         h.write("0\n")
+         return 0
+
+def  Find_Root(u):
+    Node=Tree[u]
+    while Node.parent !=None:
+        Node=Node.parent    
+    return Node
 
 
 count=0   
@@ -541,19 +574,11 @@ def print_tree(node):
        # if not node.right==None and node.right.external==0:
         #    print_tree(node.right)
 
-
-
-
-
-
-
-#global start
 if __name__ == "__main__" :  
-#     global start=time.time() 
      f=open(sys.argv[1],'r')
      g=open(sys.argv[2],'w')
+     h=open(sys.argv[3],'w')
      cases=f.readlines()
- #    start_time=time.time
      for x in cases:
         splitcases=x.split()
         if(splitcases[0]=='L') :  
@@ -570,6 +595,6 @@ if __name__ == "__main__" :
      print_tree(Find_Root(1))   
      f.close()    
      g.close()
+     h.close()   
 
-#print time.time() - start,"sec"
 
