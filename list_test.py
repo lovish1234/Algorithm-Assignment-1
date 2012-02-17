@@ -72,7 +72,7 @@ if __name__ == "__main__" :
     Tree = {}	
     for i in range(1000):
 	Tree[i]= Node(i)
-    List=[1]
+    List=[1,3]
     f=open('testcases.txt','w')
     x=random.randint(1,1000)
     for i in range (1000):

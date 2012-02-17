@@ -78,10 +78,12 @@ def Is_Reachable(u,v):
     while Node1!=Node2 and Node1 !=None :
         Node1=Node1.right
     if Node1 != None:
-        print v ," is Reachable from ",u
+        h.write( "1\n")
+        #print v ," is Reachable from ",u
         return 1
     else:
-        print v ," is Not Reachable from ",u
+        h.write("0\n")
+        #print v ," is Not Reachable from ",u
         return 0
 def Report_Minimum(u,v):
     Node1=Tree[u]
@@ -119,6 +121,7 @@ def Traverse(index):
 if __name__ == "__main__" :
      f=open(sys.argv[1],'r')
      g=open(sys.argv[2],'w')
+     h=open(sys.argv[3],'w')
      cases=f.readlines()
      for x in cases:
         splitcases=x.split()
@@ -137,5 +140,5 @@ if __name__ == "__main__" :
  
      f.close()    
      g.close()
-
+     h.close()   
 
